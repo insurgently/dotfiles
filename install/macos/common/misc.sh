@@ -8,15 +8,16 @@ fi
 
 readonly BREW_PACKAGES=(
     awscli
+    bash
     bats-core
     gpg
     imagemagick
     jq
     hugo
     htop
+    neovim
     pinentry-mac
     shellcheck
-#    tailscale
     vim
     watchexec
     zsh
@@ -24,6 +25,7 @@ readonly BREW_PACKAGES=(
 
 readonly CASK_PACKAGES=(
     adobe-acrobat-reader
+    dropbox
     google-chrome
     google-drive
     gpg-suite-no-mail
@@ -31,6 +33,7 @@ readonly CASK_PACKAGES=(
     slack
     spotify
     visual-studio-code
+    wezterm
     zotero
     zoom
 )
