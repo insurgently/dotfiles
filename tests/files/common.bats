@@ -22,7 +22,6 @@
 
     directories_exists=(
         "${HOME}/.config/fzf"
-        "${HOME}/.spacemacs.d"
     )
     for directory in "${directories_exists[@]}"; do
         echo "Checking ${directory}"
