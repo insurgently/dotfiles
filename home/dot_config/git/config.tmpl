@@ -1,7 +1,7 @@
 [user]
-	name = Shunsuke KITADA
+	name = Insurgently 
 	email = {{ .email | quote }}
-	signingkey = D55D775A7951407C
+	{{/*signingkey = D55D775A7951407C*/}}
 [color]
 	ui = auto
 [url "git@github.com:"]
@@ -12,8 +12,10 @@
 [ghq]
 	root = ~/.local/share
 	root = ~/ghq
+{{/*
 [commit]
 	gpgsign = true
+*/}}
 [pull]
 	rebase = true
 [core]

@@ -21,10 +21,10 @@ declare -r DOTFILES_LOGO='
                                            |__/
 
              *** This is setup script for my dotfiles setup ***            
-                     https://github.com/shunk031/dotfiles
+                     https://github.com/insurgently/dotfiles
 '
 
-declare -r DOTFILES_REPO_URL="https://github.com/shunk031/dotfiles"
+declare -r DOTFILES_REPO_URL="https://github.com/insurgently/dotfiles"
 declare -r BRANCH_NAME="${BRANCH_NAME:-master}"
 declare -r DOTFILES_GITHUB_PAT="${DOTFILES_GITHUB_PAT:-}"
 

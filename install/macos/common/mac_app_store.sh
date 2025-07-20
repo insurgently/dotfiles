@@ -26,23 +26,8 @@ function install_bandwidth_plus() {
     run_mas_install "${app_id}"
 }
 
-function install_line() {
-    local app_id="539883307"
-    run_mas_install "${app_id}"
-}
-
-function install_1password7() {
-    local app_id="1333542190"
-    run_mas_install "${app_id}"
-}
-
 function install_xcode() {
     local app_id="497799835"
-    run_mas_install "${app_id}"
-}
-
-function install_tailscale() {
-    local app_id="1475387142"
     run_mas_install "${app_id}"
 }
 

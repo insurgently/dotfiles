@@ -17,11 +17,6 @@ function defaults_keyboard() {
     defaults write NSGlobalDomain KeyRepeat -int 2
     # Set a shorter Delay until key repeat
     defaults write NSGlobalDomain InitialKeyRepeat -int 25
-
-    # Change Caps to Ctrl
-    # ref. https://stackoverflow.com/a/46460200
-    hidutil property --set \
-        '{"UserKeyMapping": [{"HIDKeyboardModifierMappingSrc": 0x700000039, "HIDKeyboardModifierMappingDst": 0x7000000e0 }] }'
 }
 
 function defaults_trackpad() {
@@ -85,57 +80,6 @@ function defaults_dock() {
             exit 1
         fi
     }
-
-    defaults write com.apple.dock persistent-apps -array \
-        "$(dock_item /Applications/Google\ Chrome.app)" \
-        "$(dock_item /Applications/Visual\ Studio\ Code.app)" \
-        "$(dock_item /Applications/Slack.app)" \
-        "$(dock_item /Applications/iTerm.app)" \
-        "$(dock_item "$(get_system_app_path)")"
-}
-
-function defaults_input_sources() {
-    # Enable `Automatically switch to a document's input source'`
-    defaults write com.apple.HIToolbox AppleGlobalTextInputProperties -dict TextInputGlobalPropertyPerContextInput -bool true
-
-    # `Select the previous input source` as Command + `
-    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 \
-        "<dict>
-            <key>enabled</key><true/>
-            <key>value</key>
-                <dict>
-                    <key>parameters</key>
-                        <array>
-                            <integer>96</integer>
-                            <integer>50</integer>
-                            <integer>1048576</integer>
-                        </array>
-                    <key>type</key>
-                        <string>standard</string>
-                </dict>
-        </dict>"
-
-    # Temporarily delete IME input language settings
-    defaults delete com.apple.HIToolbox AppleEnabledInputSources
-    # Add US IME input source
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
-        "<dict>
-            <key>InputSourceKind</key><string>Keyboard Layout</string>
-            <key>KeyboardLayout ID</key><integer>0</integer>
-            <key>KeyboardLayout Name</key><string>U.S.</string>
-        </dict>"
-    # Add Google Japanese IME input source
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
-        "<dict>
-            <key>Bundle ID</key><string>com.google.inputmethod.Japanese</string>
-            <key>Input Mode</key><string>com.apple.inputmethod.Japanese</string>
-            <key>InputSourceKind</key><string>Input Mode</string>
-        </dict>"
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
-        "<dict>
-            <key>Bundle ID</key><string>com.google.inputmethod.Japanese</string>
-            <key>InputSourceKind</key><string>Keyboard Input Method</string>
-        </dict>"
 }
 
 function defaults_finder() {
@@ -207,7 +151,6 @@ function kill_affected_applications() {
         # "Google Chrome Canary"
         # "Google Chrome"
         "SizeUp"
-        "Rectangle"
         "SystemUIServer"
         # "Terminal" # disable because the setup script is running in the Terminal
         "Transmission"
@@ -216,17 +159,6 @@ function kill_affected_applications() {
     for app in "${apps[@]}"; do
         killall "${app}" || echo "Process \`${app}\` was not running."
     done
-}
-
-function open_rectangle() {
-    local app_path="/Applications/Rectangle.app/"
-    if [ -e "${app_path}" ]; then
-        open -g "${app_path}"
-    fi
-}
-
-function open_killed_applications() {
-    open_rectangle
 }
 
 function main() {
@@ -239,7 +171,6 @@ function main() {
     defaults_trackpad
     defaults_assistant
     defaults_controlcenter
-    defaults_input_sources
     defaults_screencapture
 
     kill_affected_applications
