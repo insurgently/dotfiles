@@ -173,8 +173,6 @@ function main() {
     defaults_controlcenter
     defaults_screencapture
 
-    kill_affected_applications
-    open_killed_applications
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
