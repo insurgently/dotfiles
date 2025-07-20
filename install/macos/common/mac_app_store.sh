@@ -36,8 +36,8 @@ function main() {
 
     if ! "${CI:-false}"; then
         install_bandwidth_plus
-        install_line
-        install_tailscale
+        #install_line
+        #install_tailscale
         # install_1password7
         # install_xcode
     fi
