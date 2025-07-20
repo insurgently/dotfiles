@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Fuzzy find a file and open it in Neovim
+vf() {
+  local file
+  # Find a file using fd, pass it to fzf with a preview window
+  file=$(fd --type f --hidden --no-ignore | fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')
+  
+  # If a file was selected (the variable is not empty), open it
+  if [[ -n "$file" ]]; then
+    nvim "$file"
+  fi
+}
