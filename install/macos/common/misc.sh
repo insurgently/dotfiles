@@ -11,6 +11,7 @@ readonly BREW_PACKAGES=(
     bash
     bats-core
     gpg
+    fd
     imagemagick
     jq
     hugo
